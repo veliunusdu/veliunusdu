@@ -7,6 +7,7 @@ import site from './data/siteConfig'
 import SocialLinks from './components/SocialLinks'
 import Skills from './components/Skills'
 import Education from './components/Education'
+import ContactForm from './components/ContactForm'
 
 export default function App() {
   const [theme] = useTheme()
@@ -51,21 +52,7 @@ export default function App() {
 
         <section className="contact">
           <h2>Contact Me</h2>
-          {/* Replace form with direct Gmail compose link */}
-          {site.email && (
-            (() => {
-              const params = new URLSearchParams({ view: 'cm', fs: '1', to: site.email })
-              const href = `https://mail.google.com/mail/?${params.toString()}`
-              return (
-                <div className="contact-cta">
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="liquid-btn contact-link" aria-label="Send email">
-                    <span className="liquid" aria-hidden></span>
-                    <span className="label">Send me an email</span>
-                  </a>
-                </div>
-              )
-            })()
-          )}
+          <ContactForm />
         </section>
       </main>
 

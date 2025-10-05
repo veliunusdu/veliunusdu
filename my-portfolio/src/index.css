@@ -483,6 +483,81 @@ button:hover {
   100% { transform: translate(-50%, -75%) rotate(360deg); }
 }
 
+/* Contact form layout from user */
+.contact-container {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 40px 0;
+}
+.contact-container .container {
+  background: #fff;
+  width: 800px;
+  height: 450px;
+  border-radius: 24px;
+  box-shadow: 16px 16px 8px rgba(0, 0, 0, .08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contact-container .picture-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contact-form-container {
+  height: 90%;
+  width: 300px;
+}
+.contact-form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+.form-header {
+  font-size: 1.6rem;
+  font-weight: 700;
+  align-self: flex-start;
+}
+.email-input {
+  border: none;
+  outline: none;
+  background: #eee;
+  padding: 14px;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1rem;
+}
+.message {
+  border: none;
+  outline: none;
+  resize: none;
+  background: #eee;
+  padding: 14px;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1rem;
+}
+.submit {
+  border: none;
+  outline: none;
+  color: #fff;
+  width: 100%;
+  padding: 12px;
+  background: var(--accent);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: transform 300ms cubic-bezier(0, 0.23, 0.29, 2.45);
+}
+.submit:hover { background: #7F69EE; transform: translateY(-2px); cursor: pointer; }
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero h2 {
