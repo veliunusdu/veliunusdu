@@ -478,6 +478,20 @@ button:hover {
   color: var(--muted);
 }
 
+/* Ensure footer contents (copyright + social links) are centered */
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-footer .social-links {
+  display: flex; /* already set globally, but ensure here */
+  justify-content: center;
+  gap: 10px;
+}
+
 /* Liquid anchor button styles (Splatoon-like) */
 .liquid-btn, .liquid-btn.submit {
   position: relative;
