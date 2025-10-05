@@ -29,7 +29,7 @@ export default function ContactForm() {
         setStatus('error')
       }
     } else {
-      // fallback to mailto
+      // Fallback: open default mail client with prefilled body
       const mailto = `mailto:${encodeURIComponent('veliunusdu14@gmail.com')}?subject=${encodeURIComponent('Contact from portfolio')}&body=${encodeURIComponent(message)}`
       window.location.href = mailto
       setStatus('sent')
@@ -37,23 +37,35 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="contact-container">
-      <div className="picture-container">
-        {/* SVG illustration copied from user */}
-        <div className="picture" dangerouslySetInnerHTML={{ __html: `<!-- svg omitted for brevity -->` }} />
-      </div>
+    <div className="contact-form-wrapper">
+      <form className="contact-form" onSubmit={handleSubmit}>
+        <input
+          type="email"
+          className="email-input"
+          placeholder="Your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <textarea
+          name="message"
+          cols="30"
+          rows="5"
+          className="message"
+          placeholder="Message..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
+        ></textarea>
+        <button className="liquid-btn" type="submit">
+          <span className="liquid" aria-hidden></span>
+          <span className="label">Send a message</span>
+        </button>
 
-      <div className="contact-form-container">
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <span className="form-header">Contact us</span>
-          <input type="email" className="email-input" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-          <textarea name="feedback" cols="30" rows="5" className="message" placeholder="Message..." value={message} onChange={e => setMessage(e.target.value)} required></textarea>
-          <button className="submit" type="submit">Submit</button>
-          {status === 'pending' && <p>Sending...</p>}
-          {status === 'sent' && <p>Thanks — message sent!</p>}
-          {status === 'error' && <p>Sorry, something went wrong.</p>}
-        </form>
-      </div>
+        {status === 'pending' && <p>Sending...</p>}
+        {status === 'sent' && <p>Thanks — message sent!</p>}
+        {status === 'error' && <p>Sorry, something went wrong.</p>}
+      </form>
     </div>
   )
 }
