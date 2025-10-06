@@ -38,7 +38,7 @@ export default function App() {
 
       <main>
         <section className="hero">
-          <h2>{site.headline}</h2>
+          <h2 className="hover-underline">{site.headline}</h2>
           <p>Welcome to my portfolio — I build things and learn every day.</p>
         </section>
 
