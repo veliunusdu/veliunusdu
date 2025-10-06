@@ -620,7 +620,7 @@ button:hover {
   padding: 0;
   margin: 0;
   list-style: none;
-  font-size: 6rem; /* larger name */
+  font-size: 4rem; /* smaller name */
   font-weight: 700;
   color: var(--fg);
   cursor: pointer;
@@ -630,7 +630,7 @@ button:hover {
 
 .interactive-name .char {
   display: flex;
-  padding: 1.2rem 0.26rem; /* spacing for much larger letters */
+  padding: 0.45rem 0.12rem; /* tighter spacing for smaller letters */
   --active: 0; /* Default to inactive */
 }
 
@@ -700,29 +700,32 @@ button:hover {
 
 .theme-toggle-animated {
   display: block;
-  width: 84px;
-  height: 40px;
+  width: 64px;
+  height: 32px;
   border: 2px solid var(--border);
-  border-radius: 99em;
+  border-radius: 9999px;
   position: relative;
-  transition: transform .36s ease-in-out, background-color .18s ease;
+  transition: transform .28s ease-in-out, background-color .18s ease;
   transform-origin: 50% 50%;
   cursor: pointer;
   background-color: var(--card);
 }
 
 .theme-toggle-animated::before {
-  transition: transform .36s ease;
-  transition-delay: .18s;
+  transition: transform .28s cubic-bezier(.2,.8,.2,1);
+  transition-delay: .08s;
   content: "";
   display: block;
   position: absolute;
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
   background-color: var(--fg);
   border-radius: 50%;
-  top: 7px;
-  left: 7px;
+  top: 50%;
+  left: 6px;
+  transform: translateY(-50%);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.06);
 }
 
 .theme-toggle-input:checked + .theme-toggle-animated {
@@ -730,22 +733,26 @@ button:hover {
   background-color: var(--bg);
 }
 
-theme-toggle-input:checked + .theme-toggle-animated::before {
-  transform: translateX(32px);
+.theme-toggle-input:checked + .theme-toggle-animated::before {
+  transform: translate(38px, -50%);
   background-color: var(--bg);
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.06) inset;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.06);
 }
 
 /* Thumb for visual depth */
 .theme-toggle-animated .thumb {
   position: absolute;
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  top: 7px;
-  left: 7px;
+  top: 50%;
+  left: 6px;
+  transform: translateY(-50%);
   background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(0,0,0,0.06));
   pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.06);
 }
 
 @media (prefers-reduced-motion: reduce) {
