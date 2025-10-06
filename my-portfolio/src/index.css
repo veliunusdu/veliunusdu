@@ -581,7 +581,7 @@ button:hover {
   padding: 0;
   margin: 0;
   list-style: none;
-  font-size: 5.25rem; /* slightly larger name */
+  font-size: 6rem; /* larger name */
   font-weight: 700;
   color: var(--fg);
   cursor: pointer;
@@ -591,7 +591,7 @@ button:hover {
 
 .interactive-name .char {
   display: flex;
-  padding: 1.1rem 0.24rem; /* slightly more spacing for bigger letters */
+  padding: 1.2rem 0.26rem; /* spacing for much larger letters */
   --active: 0; /* Default to inactive */
 }
 
@@ -661,29 +661,29 @@ button:hover {
 
 .theme-toggle-animated {
   display: block;
-  width: 96px;
-  height: 48px;
-  border: 3px solid var(--border);
+  width: 84px;
+  height: 40px;
+  border: 2px solid var(--border);
   border-radius: 99em;
   position: relative;
-  transition: transform .45s ease-in-out, background-color .18s ease;
+  transition: transform .36s ease-in-out, background-color .18s ease;
   transform-origin: 50% 50%;
   cursor: pointer;
   background-color: var(--card);
 }
 
 .theme-toggle-animated::before {
-  transition: transform .5s ease;
-  transition-delay: .25s;
+  transition: transform .36s ease;
+  transition-delay: .18s;
   content: "";
   display: block;
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   background-color: var(--fg);
   border-radius: 50%;
-  top: 9px;
-  left: 9px;
+  top: 7px;
+  left: 7px;
 }
 
 .theme-toggle-input:checked + .theme-toggle-animated {
@@ -691,8 +691,8 @@ button:hover {
   background-color: var(--bg);
 }
 
-.theme-toggle-input:checked + .theme-toggle-animated::before {
-  transform: translateX(40px);
+theme-toggle-input:checked + .theme-toggle-animated::before {
+  transform: translateX(32px);
   background-color: var(--bg);
   box-shadow: 0 0 0 3px rgba(0,0,0,0.06) inset;
 }
@@ -700,11 +700,11 @@ button:hover {
 /* Thumb for visual depth */
 .theme-toggle-animated .thumb {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  top: 9px;
-  left: 9px;
+  top: 7px;
+  left: 7px;
   background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(0,0,0,0.06));
   pointer-events: none;
 }
