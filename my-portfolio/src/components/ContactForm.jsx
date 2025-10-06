@@ -26,6 +26,7 @@ export default function ContactForm() {
           setStatus('error')
         }
       } catch (err) {
+        console.error('Form submit error', err)
         setStatus('error')
       }
     } else {

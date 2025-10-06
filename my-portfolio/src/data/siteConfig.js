@@ -1,6 +1,6 @@
 const siteConfig = {
     name: 'Veli Ünüşdü',
-    headline: "Hi, I'm a Student",
+    headline: "Hello, I am a student",
     email: 'veliunusdu14@gmail.com',
     social: {
     github: 'https://github.com/veliunusdu',

@@ -9,7 +9,7 @@ import Skills from './components/Skills'
 import Education from './components/Education'
 
 export default function App() {
-  const [theme] = useTheme()
+  useTheme()
 
   return (
     <div className="app">
@@ -22,7 +22,13 @@ export default function App() {
         </div>
 
         <div className="header-center" style={{ flex: 1, textAlign: 'center' }}>
-          <h1 className="site-title">{site.name}</h1>
+          <ul className="interactive-name">
+            {site.name.split('').map((char, index) => (
+              <li key={index} className="char" tabIndex="0">
+                <span>{char === ' ' ? '\u00A0' : char}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="header-right">
@@ -32,8 +38,8 @@ export default function App() {
 
       <main>
         <section className="hero">
-          <h2>Hi, I'm a Student</h2>
-          <p>Hello, Hello</p>
+          <h2>{site.headline}</h2>
+          <p>Welcome to my portfolio — I build things and learn every day.</p>
         </section>
 
         <Skills />
