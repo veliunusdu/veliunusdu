@@ -57,6 +57,24 @@ export default function App() {
 
         <section className="contact">
           <h2>Contact Me</h2>
+          {/* Animated mail visual placed between heading and CTA */}
+          <div className="letter-image" aria-hidden="true">
+            <div className="animated-mail">
+              <div className="back-fold"></div>
+              <div className="letter">
+                <div className="letter-border"></div>
+                <div className="letter-title"></div>
+                <div className="letter-context"></div>
+                <div className="letter-stamp">
+                  <div className="letter-stamp-inner"></div>
+                </div>
+              </div>
+              <div className="top-fold"></div>
+              <div className="body"></div>
+              <div className="left-fold"></div>
+            </div>
+            <div className="shadow"></div>
+          </div>
           {site.email && (
             (() => {
               const params = new URLSearchParams({ view: 'cm', fs: '1', to: site.email })

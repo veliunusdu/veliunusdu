@@ -642,7 +642,7 @@ button:hover {
   padding: 0;
   margin: 0;
   list-style: none;
-  font-size: 2.25rem;
+  font-size: 3rem; /* increased from 2.25rem */
   font-weight: 700;
   color: var(--fg);
   cursor: pointer;
@@ -652,7 +652,7 @@ button:hover {
 
 .interactive-name .char {
   display: flex;
-  padding: 0.5rem 0.1rem;
+  padding: 0.75rem 0.15rem; /* slightly more spacing for larger letters */
   --active: 0; /* Default to inactive */
 }
 
@@ -692,6 +692,7 @@ button:hover {
   .hero h2 {
     font-size: 2rem;
   }
+  .interactive-name { font-size: 2rem; }
   
   .project-grid {
     grid-template-columns: 1fr;
@@ -700,5 +701,79 @@ button:hover {
   .site-header {
     flex-direction: column;
     gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .interactive-name { font-size: 1.5rem; }
+  .interactive-name .char { padding: 0.45rem 0.08rem; }
+}
+
+/* Animated dark/light theme toggle */
+.theme-toggle-wrapper {
+  display: inline-block;
+}
+
+.theme-toggle-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: auto;
+}
+
+.theme-toggle-animated {
+  display: block;
+  width: 130px;
+  height: 64px;
+  border: 5px solid var(--border);
+  border-radius: 99em;
+  position: relative;
+  transition: transform .6s ease-in-out, background-color .25s ease;
+  transform-origin: 50% 50%;
+  cursor: pointer;
+  background-color: var(--card);
+}
+
+.theme-toggle-animated::before {
+  transition: transform .6s ease;
+  transition-delay: .35s;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: var(--fg);
+  border-radius: 50%;
+  top: 12px;
+  left: 12px;
+}
+
+.theme-toggle-input:checked + .theme-toggle-animated {
+  transform: rotate(360deg);
+  background-color: var(--bg);
+}
+
+.theme-toggle-input:checked + .theme-toggle-animated::before {
+  transform: translateX(64px);
+  background-color: var(--bg);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.06) inset;
+}
+
+/* Thumb for visual depth */
+.theme-toggle-animated .thumb {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(0,0,0,0.06));
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-animated,
+  .theme-toggle-animated::before,
+  .theme-toggle-animated .thumb {
+    transition: none !important;
   }
 }
