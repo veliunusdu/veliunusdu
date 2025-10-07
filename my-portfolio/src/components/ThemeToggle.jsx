@@ -3,7 +3,7 @@ import { useTheme } from '../hooks/useTheme'
 
 export default function ThemeToggle() {
   const [theme, toggle] = useTheme()
-  // reverse behavior: checked = light (so switch appears ON in light mode)
+  // reverse behavior: checked when theme is light so the switch shows ON in light mode
   const checked = theme === 'light'
 
   return (
