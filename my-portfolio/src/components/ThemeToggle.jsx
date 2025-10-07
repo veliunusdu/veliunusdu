@@ -3,7 +3,8 @@ import { useTheme } from '../hooks/useTheme'
 
 export default function ThemeToggle() {
   const [theme, toggle] = useTheme()
-  const checked = theme === 'dark'
+  // reverse behavior: checked = light (so switch appears ON in light mode)
+  const checked = theme === 'light'
 
   return (
     <div className="power-switch">
@@ -12,7 +13,7 @@ export default function ThemeToggle() {
         type="checkbox"
         checked={checked}
         onChange={toggle}
-        aria-label={checked ? 'Switch to light theme' : 'Switch to dark theme'}
+  aria-label={checked ? 'Switch to dark theme' : 'Switch to light theme'}
       />
       <div className="button" aria-hidden>
         <svg className="power-off" viewBox="0 0 150 150" aria-hidden>

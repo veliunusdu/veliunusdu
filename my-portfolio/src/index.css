@@ -777,8 +777,8 @@ button:hover {
 /* Power switch exact animation (converted from user SCSS) */
 .power-switch {
   --color-invert: #ffffff;
-  --width: 150px;
-  --height: 150px;
+  --width: 64px;
+  --height: 64px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -817,7 +817,7 @@ button:hover {
   z-index: 1;
   fill: none;
   stroke: var(--color-invert);
-  stroke-width: 8px;
+  stroke-width: 3px;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -831,9 +831,9 @@ button:hover {
 .power-switch .power-off .circle {
   opacity: .2;
   transform: rotate(-58deg);
-  transform-origin: center 80px;
-  stroke-dasharray: 220;
-  stroke-dashoffset: 40;
+  transform-origin: center 32px;
+  stroke-dasharray: 96;
+  stroke-dashoffset: 16;
 }
 
 .power-switch .power-on {
