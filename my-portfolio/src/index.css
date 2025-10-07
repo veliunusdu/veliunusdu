@@ -13,6 +13,9 @@
   --lerp-0: 1;
   --lerp-1: 0.85; /* sin(60deg) */
   --lerp-2: 0.707; /* sin(45deg) */
+  .theme-toggle-animated:focus-visible {
+    outline: 2px solid Highlight;
+  }
   --lerp-3: 0.5;   /* sin(30deg) */
   --lerp-4: 0.258; /* sin(15deg) */
   --lerp-5: 0.1;
@@ -761,4 +764,12 @@ button:hover {
   .theme-toggle-animated .thumb {
     transition: none !important;
   }
+}
+
+/* Hidden SVG defs container used in index.html */
+.svg-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }

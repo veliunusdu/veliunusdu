@@ -6,18 +6,24 @@ export default function ThemeToggle() {
   const checked = theme === 'dark'
 
   return (
-    <div className="theme-toggle-wrapper">
+    <div className="power-switch">
       <input
         id="theme-toggle-checkbox"
-        className="theme-toggle-input"
         type="checkbox"
         checked={checked}
         onChange={toggle}
         aria-label={checked ? 'Switch to light theme' : 'Switch to dark theme'}
       />
-      <label htmlFor="theme-toggle-checkbox" className="theme-toggle-animated" aria-hidden>
-        <span className="thumb" aria-hidden></span>
-      </label>
+      <div className="button" aria-hidden>
+        <svg className="power-off" viewBox="0 0 150 150" aria-hidden>
+          <use xlinkHref="#line" className="line" />
+          <use xlinkHref="#circle" className="circle" />
+        </svg>
+        <svg className="power-on" viewBox="0 0 150 150" aria-hidden>
+          <use xlinkHref="#line" className="line" />
+          <use xlinkHref="#circle" className="circle" />
+        </svg>
+      </div>
     </div>
   )
 }
