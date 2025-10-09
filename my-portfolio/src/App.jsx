@@ -11,44 +11,48 @@ import Education from './components/Education'
 export default function App() {
   useTheme()
 
-  // On mount, simulate a cursor moving across the name (head -> tail).
+  // On mount, simulate a cursor moving across the name (head -> tail) after 1s delay.
   useEffect(() => {
-    const chars = Array.from(document.querySelectorAll('.interactive-name .char'))
-    if (!chars.length) return
-
+    const startDelay = 1000
     const maxSpread = 5 // how many neighbors get progressively active
     const stepDelay = 120 // ms between steps
     const hold = 220 // ms to hold the highlight on each step
     const timers = []
 
-    chars.forEach((_, i) => {
-      const t = setTimeout(() => {
-        // clear existing sim classes
-        chars.forEach(c => {
-          for (let k = 0; k <= maxSpread; k++) c.classList.remove(`sim-${k}`)
-        })
+    const start = setTimeout(() => {
+      const chars = Array.from(document.querySelectorAll('.interactive-name .char'))
+      if (!chars.length) return
 
-        // apply progressive classes to the current index and neighbors
-        for (let d = 0; d <= maxSpread; d++) {
-          const idxF = i + d
-          const idxB = i - d
-          if (idxF < chars.length) chars[idxF].classList.add(`sim-${d}`)
-          if (idxB >= 0) chars[idxB].classList.add(`sim-${d}`)
-        }
-
-        // clear after hold
-        const clearT = setTimeout(() => {
+      chars.forEach((_, i) => {
+        const t = setTimeout(() => {
+          // clear existing sim classes
           chars.forEach(c => {
             for (let k = 0; k <= maxSpread; k++) c.classList.remove(`sim-${k}`)
           })
-        }, hold)
 
-        timers.push(clearT)
-      }, i * stepDelay)
+          // apply progressive classes to the current index and neighbors
+          for (let d = 0; d <= maxSpread; d++) {
+            const idxF = i + d
+            const idxB = i - d
+            if (idxF < chars.length) chars[idxF].classList.add(`sim-${d}`)
+            if (idxB >= 0) chars[idxB].classList.add(`sim-${d}`)
+          }
 
-      timers.push(t)
-    })
+          // clear after hold
+          const clearT = setTimeout(() => {
+            chars.forEach(c => {
+              for (let k = 0; k <= maxSpread; k++) c.classList.remove(`sim-${k}`)
+            })
+          }, hold)
 
+          timers.push(clearT)
+        }, i * stepDelay)
+
+        timers.push(t)
+      })
+    }, startDelay)
+
+    timers.push(start)
     return () => timers.forEach(t => clearTimeout(t))
   }, [])
 
