@@ -52,12 +52,6 @@ export default function App() {
     return () => timers.forEach(t => clearTimeout(t))
   }, [])
 
-  // Add a `ready` class after a short delay so initial load animations can be gated off.
-  useEffect(() => {
-    const t = setTimeout(() => document.documentElement.classList.add('ready'), 120)
-    return () => clearTimeout(t)
-  }, [])
-
   return (
     <div className="app">
       <header
