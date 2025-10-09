@@ -786,8 +786,8 @@ button:hover {
 .power-switch {
   /* use theme foreground so the icon is visible in both light and dark themes */
   --color-invert: var(--fg);
-  --width: 150px;
-  --height: 150px;
+  --width: 100px;
+  --height: 100px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -813,7 +813,7 @@ button:hover {
   background: radial-gradient(circle closest-side, var(--color-invert), transparent);
   filter: blur(20px);
   opacity: 0;
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 1s ease, transform 1s ease;
   transform: perspective(1px) translateZ(0);
   backface-visibility: hidden;
 }
@@ -852,13 +852,13 @@ button:hover {
 
 .power-switch .power-on .line {
   opacity: 0;
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.9s;
+  transition: opacity .3s ease 1s;
 }
 
 .power-switch .power-on .circle {
   opacity: 1;
   stroke-dashoffset: 220;
-  transition: transform 0s cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: transform 0s ease, stroke-dashoffset 1s ease 0s;
 }
 
 .power-switch input {
@@ -870,48 +870,51 @@ button:hover {
   opacity: 0;
 }
 
-.ready .power-switch input:checked + .button::after {
+.power-switch input:checked + .button::after {
   opacity: 0.15;
   transform: scale(2) perspective(1px) translateZ(0);
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity .5s ease, transform .5s ease;
 }
-.ready .power-switch input:checked + .button .power-on,
-.ready .power-switch input:checked + .button .power-off {
-  animation: click-animation 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+
+.power-switch input:checked + .button .power-on,
+.power-switch input:checked + .button .power-off {
+  animation: click-animation .3s ease forwards;
   transform: scale(1);
 }
-.ready .power-switch input:checked + .button .power-on .line,
-.ready .power-switch input:checked + .button .power-off .line {
-  animation: line-animation 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+
+.power-switch input:checked + .button .power-on .line,
+.power-switch input:checked + .button .power-off .line {
+  animation: line-animation .8s ease-in forwards;
 }
-.ready .power-switch input:checked + .button .power-on .circle,
-.ready .power-switch input:checked + .button .power-off .circle {
+
+.power-switch input:checked + .button .power-on .circle,
+.power-switch input:checked + .button .power-off .circle {
   transform: rotate(302deg);
 }
-.ready .power-switch input:checked + .button .power-on .line {
+
+.power-switch input:checked + .button .power-on .line {
   opacity: 1;
-  transition: opacity 0.08s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+  transition: opacity .05s ease-in .55s;
 }
-.ready .power-switch input:checked + .button .power-on .circle {
+
+.power-switch input:checked + .button .power-on .circle {
   transform: rotate(302deg);
   stroke-dashoffset: 40;
-  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s, stroke-dashoffset 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s;
+  transition: transform .4s ease .2s, stroke-dashoffset .4s ease .2s;
 }
 
 @keyframes line-animation {
   0% { transform: translateY(0); }
-  15% { transform: translateY(12px); }
-  35% { transform: translateY(-28px); }
-  55% { transform: translateY(-28px); }
-  75% { transform: translateY(8px); }
-  90% { transform: translateY(-2px); }
+  10% { transform: translateY(10px); }
+  40% { transform: translateY(-25px); }
+  60% { transform: translateY(-25px); }
+  85% { transform: translateY(10px); }
   100% { transform: translateY(0px); }
 }
 
 @keyframes click-animation {
   0% { transform: scale(1); }
-  40% { transform: scale(0.88); }
-  70% { transform: scale(1.02); }
+  50% { transform: scale(.9); }
   100% { transform: scale(1); }
 }
 
