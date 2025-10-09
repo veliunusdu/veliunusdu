@@ -11,50 +11,50 @@ import Education from './components/Education'
 export default function App() {
   useTheme()
 
-  // On mount, simulate a cursor moving across the name (head -> tail) after 1s delay.
+  // On mount, simulate a cursor moving across the name (head -> tail).
   useEffect(() => {
-    const startDelay = 750
-    const maxSpread = 5 // how many neighbors get progressively active
-    const stepDelay = 120 // ms between steps
-    const hold = 220 // ms to hold the highlight on each step
-    const timers = []
+    const startDelay = 500; // shorter initial delay for snappier feel
+    const maxSpread = 5; // neighbors to affect
+    const stepDelay = 80; // time between each char activation (ms)
+    const hold = 140; // how long each activation persists (ms)
+    const timers = [];
 
     const start = setTimeout(() => {
-      const chars = Array.from(document.querySelectorAll('.interactive-name .char'))
-      if (!chars.length) return
+      const chars = Array.from(document.querySelectorAll('.interactive-name .char'));
+      if (!chars.length) return;
 
       chars.forEach((_, i) => {
         const t = setTimeout(() => {
           // clear existing sim classes
           chars.forEach(c => {
-            for (let k = 0; k <= maxSpread; k++) c.classList.remove(`sim-${k}`)
-          })
+            for (let k = 0; k <= maxSpread; k++) c.classList.remove(`sim-${k}`);
+          });
 
           // apply progressive classes to the current index and neighbors
           for (let d = 0; d <= maxSpread; d++) {
-            const idxF = i + d
-            const idxB = i - d
-            if (idxF < chars.length) chars[idxF].classList.add(`sim-${d}`)
-            if (idxB >= 0) chars[idxB].classList.add(`sim-${d}`)
+            const idxF = i + d;
+            const idxB = i - d;
+            if (idxF < chars.length) chars[idxF].classList.add(`sim-${d}`);
+            if (idxB >= 0) chars[idxB].classList.add(`sim-${d}`);
           }
 
           // clear after hold
           const clearT = setTimeout(() => {
             chars.forEach(c => {
-              for (let k = 0; k <= maxSpread; k++) c.classList.remove(`sim-${k}`)
-            })
-          }, hold)
+              for (let k = 0; k <= maxSpread; k++) c.classList.remove(`sim-${k}`);
+            });
+          }, hold);
 
-          timers.push(clearT)
-        }, i * stepDelay)
+          timers.push(clearT);
+        }, i * stepDelay);
 
-        timers.push(t)
-      })
-    }, startDelay)
+        timers.push(t);
+      });
+    }, startDelay);
 
-    timers.push(start)
-    return () => timers.forEach(t => clearTimeout(t))
-  }, [])
+    timers.push(start);
+    return () => timers.forEach(t => clearTimeout(t));
+  }, []);
 
   return (
     <div className="app">
