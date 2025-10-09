@@ -647,7 +647,7 @@ button:hover {
   display: inline-block;
   scale: calc(var(--active, 0) + 0.5);
   filter: blur(calc((1 - var(--active, 0)) * 0.5rem));
-  transition: scale 0.2s, filter 0.2s;
+  transition: scale 0.5s, filter 0.5s;
 }
 
 /* Simulation classes applied on load to sweep the cursor across the name */
