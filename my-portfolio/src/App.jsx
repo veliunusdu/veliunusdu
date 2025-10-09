@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTheme } from './hooks/useTheme'
 import ThemeToggle from './components/ThemeToggle'
 import ProjectCard from './components/ProjectCard'
@@ -10,6 +10,53 @@ import Education from './components/Education'
 
 export default function App() {
   useTheme()
+
+  // On mount, simulate a cursor moving across the name (head -> tail).
+  useEffect(() => {
+    const chars = Array.from(document.querySelectorAll('.interactive-name .char'))
+    if (!chars.length) return
+
+    const maxSpread = 5 // how many neighbors get progressively active
+    const stepDelay = 120 // ms between steps
+    const hold = 220 // ms to hold the highlight on each step
+    const timers = []
+
+    chars.forEach((_, i) => {
+      const t = setTimeout(() => {
+        // clear existing sim classes
+        chars.forEach(c => {
+          for (let k = 0; k <= maxSpread; k++) c.classList.remove(`sim-${k}`)
+        })
+
+        // apply progressive classes to the current index and neighbors
+        for (let d = 0; d <= maxSpread; d++) {
+          const idxF = i + d
+          const idxB = i - d
+          if (idxF < chars.length) chars[idxF].classList.add(`sim-${d}`)
+          if (idxB >= 0) chars[idxB].classList.add(`sim-${d}`)
+        }
+
+        // clear after hold
+        const clearT = setTimeout(() => {
+          chars.forEach(c => {
+            for (let k = 0; k <= maxSpread; k++) c.classList.remove(`sim-${k}`)
+          })
+        }, hold)
+
+        timers.push(clearT)
+      }, i * stepDelay)
+
+      timers.push(t)
+    })
+
+    return () => timers.forEach(t => clearTimeout(t))
+  }, [])
+
+  // Add a `ready` class after a short delay so initial load animations can be gated off.
+  useEffect(() => {
+    const t = setTimeout(() => document.documentElement.classList.add('ready'), 120)
+    return () => clearTimeout(t)
+  }, [])
 
   return (
     <div className="app">

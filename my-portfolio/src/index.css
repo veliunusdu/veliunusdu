@@ -650,6 +650,14 @@ button:hover {
   transition: scale 0.5s, filter 0.5s;
 }
 
+/* Simulation classes applied on load to sweep the cursor across the name */
+.interactive-name .char.sim-0 { --active: 1; }
+.interactive-name .char.sim-1 { --active: 0.85; }
+.interactive-name .char.sim-2 { --active: 0.707; }
+.interactive-name .char.sim-3 { --active: 0.5; }
+.interactive-name .char.sim-4 { --active: 0.258; }
+.interactive-name .char.sim-5 { --active: 0.1; }
+
 /* Set --active based on hover/focus proximity */
 .interactive-name .char:is(:hover, :focus-visible) { --active: var(--lerp-0); }
 
@@ -862,34 +870,29 @@ button:hover {
   opacity: 0;
 }
 
-.power-switch input:checked + .button::after {
+.ready .power-switch input:checked + .button::after {
   opacity: 0.15;
   transform: scale(2) perspective(1px) translateZ(0);
   transition: opacity .5s ease, transform .5s ease;
 }
-
-.power-switch input:checked + .button .power-on,
-.power-switch input:checked + .button .power-off {
+.ready .power-switch input:checked + .button .power-on,
+.ready .power-switch input:checked + .button .power-off {
   animation: click-animation .3s ease forwards;
   transform: scale(1);
 }
-
-.power-switch input:checked + .button .power-on .line,
-.power-switch input:checked + .button .power-off .line {
+.ready .power-switch input:checked + .button .power-on .line,
+.ready .power-switch input:checked + .button .power-off .line {
   animation: line-animation .8s ease-in forwards;
 }
-
-.power-switch input:checked + .button .power-on .circle,
-.power-switch input:checked + .button .power-off .circle {
+.ready .power-switch input:checked + .button .power-on .circle,
+.ready .power-switch input:checked + .button .power-off .circle {
   transform: rotate(302deg);
 }
-
-.power-switch input:checked + .button .power-on .line {
+.ready .power-switch input:checked + .button .power-on .line {
   opacity: 1;
   transition: opacity .05s ease-in .55s;
 }
-
-.power-switch input:checked + .button .power-on .circle {
+.ready .power-switch input:checked + .button .power-on .circle {
   transform: rotate(302deg);
   stroke-dashoffset: 40;
   transition: transform .4s ease .2s, stroke-dashoffset .4s ease .2s;
