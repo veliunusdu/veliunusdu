@@ -1246,3 +1246,247 @@ body.power-switch-demo {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+/* Parallax Background */
+.parallax-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.parallax-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+}
+
+.shape-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  top: -100px;
+  left: -100px;
+}
+
+.shape-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #ff4d4d 0%, transparent 70%);
+  top: 40%;
+  right: -100px;
+}
+
+.shape-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #4defff 0%, transparent 70%);
+  bottom: -50px;
+  left: 20%;
+}
+
+/* Ensure main content is above background */
+.app {
+  position: relative;
+  z-index: 1;
+}
+/* Snake Game Retro Styles */
+.snake-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.nokia-phone {
+  background: #333;
+  padding: 40px 20px;
+  border-radius: 30px;
+  box-shadow: 
+    inset 0 0 20px rgba(0,0,0,0.5),
+    0 20px 50px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  border: 4px solid #1a1a1a;
+  max-width: 90vw;
+}
+
+.screen-container {
+  background: #9ea792; /* Nokia screen green */
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #7c8574;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+.screen-glass {
+  position: relative;
+  overflow: hidden;
+}
+
+.screen-glass::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(255,255,255,0.1),
+    rgba(255,255,255,0)
+  );
+  pointer-events: none;
+}
+
+.game-screen {
+  position: relative;
+  font-family: 'Courier New', monospace;
+  color: #1a1a1a;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 2px solid #1a1a1a;
+  padding-bottom: 2px;
+}
+
+.game-board {
+  position: relative;
+  border: 2px solid #1a1a1a;
+  background: rgba(158, 167, 146, 0.5);
+}
+
+.snake-segment {
+  position: absolute;
+  background: #1a1a1a;
+  border: 1px solid #9ea792;
+}
+
+.food {
+  position: absolute;
+  background: #1a1a1a;
+  border-radius: 50%;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(0.8); }
+}
+
+.game-over-msg, .start-msg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(158, 167, 146, 0.9);
+  padding: 20px;
+  border: 2px solid #1a1a1a;
+  z-index: 10;
+}
+
+.game-over-msg button, .start-msg button {
+  background: #1a1a1a;
+  color: #9ea792;
+  border: none;
+  padding: 5px 15px;
+  margin-top: 10px;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.controls-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.d-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.d-row {
+  display: flex;
+  gap: 35px;
+}
+
+.d-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #e0e0e0;
+  box-shadow: 0 4px 0 #999;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #333;
+}
+
+.d-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #999;
+}
+
+.close-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 0 #cc0000;
+}
+
+.close-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #cc0000;
+}
+
+.retro-game-btn {
+  margin-top: 20px;
+  background: transparent;
+  border: 2px solid var(--muted);
+  color: var(--muted);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+.retro-game-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+

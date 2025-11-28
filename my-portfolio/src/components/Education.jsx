@@ -1,10 +1,11 @@
 import React from 'react'
+import ParallaxHeader from './ParallaxHeader'
 import education from '../data/education'
 
 export default function Education() {
   return (
-    <section className="education">
-      <h2>Education</h2>
+    <section id="education" className="education">
+      <ParallaxHeader>Education</ParallaxHeader>
       <div className="education-card">
         <h3>{education.institution}</h3>
         <p className="edu-program">{education.program}</p>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTheme } from './hooks/useTheme'
 import ThemeToggle from './components/ThemeToggle'
 import ProjectCard from './components/ProjectCard'
@@ -8,9 +8,13 @@ import SocialLinks from './components/SocialLinks'
 import Skills from './components/Skills'
 import Education from './components/Education'
 import AboutMe from './components/AboutMe'
-import { motion } from 'framer-motion'
+import ParallaxBackground from './components/ParallaxBackground'
+import ParallaxHeader from './components/ParallaxHeader'
+import SnakeGame from './components/SnakeGame'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function App() {
+  const [isSnakeOpen, setIsSnakeOpen] = useState(false)
   useTheme()
 
   // On mount, simulate a cursor moving across the name (head -> tail).
@@ -63,9 +67,41 @@ export default function App() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const fadeInLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
+  const fadeInRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } }
+  };
+
   return (
     <div className="app">
+      <ParallaxBackground />
+      <AnimatePresence>
+        {isSnakeOpen && <SnakeGame onClose={() => setIsSnakeOpen(false)} />}
+      </AnimatePresence>
+
       <motion.header
+        id="home"
         className="site-header"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -116,7 +152,7 @@ export default function App() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          variants={fadeInUp}
+          variants={fadeInLeft}
         >
           <Education />
         </motion.div>
@@ -125,7 +161,7 @@ export default function App() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          variants={fadeInUp}
+          variants={fadeInRight}
         >
           <Skills />
         </motion.div>
@@ -136,14 +172,14 @@ export default function App() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          variants={fadeInUp}
+          variants={staggerContainer}
         >
-          <h2>My Projects</h2>
-          <div className="project-grid">
+          <ParallaxHeader>My Projects</ParallaxHeader>
+          <motion.div className="project-grid" variants={staggerContainer}>
             {projects.map(project => (
               <ProjectCard key={project.id} project={project} />
             ))}
-          </div>
+          </motion.div>
         </motion.section>
 
         <motion.section
@@ -152,9 +188,9 @@ export default function App() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={fadeInUp}
+          variants={scaleIn}
         >
-          <h2>Contact Me</h2>
+          <ParallaxHeader>Contact Me</ParallaxHeader>
           {/* Animated mail visual placed between heading and CTA */}
           <div className="letter-image" aria-hidden="true">
             <div className="animated-mail">
@@ -191,8 +227,17 @@ export default function App() {
       </main>
 
       <footer className="site-footer">
-        <p>© {new Date().getFullYear()} {site.name}</p>
-        <SocialLinks links={site.social} />
+        <div className="social-links">
+          <SocialLinks links={site.social} />
+        </div>
+        <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+
+        <button
+          className="retro-game-btn"
+          onClick={() => setIsSnakeOpen(true)}
+        >
+          🐍 Play Snake
+        </button>
       </footer>
     </div>
   )

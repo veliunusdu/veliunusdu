@@ -1,16 +1,7 @@
 import React from 'react'
+import ParallaxHeader from './ParallaxHeader'
+import { motion } from 'framer-motion'
 import skills from '../data/skills'
-
-function SkillRow({ skill }) {
-	return (
-		<div className="skill-row">
-			<div className="skill-meta">
-				<span className="skill-icon">{Icon({ name: skill.icon })}</span>
-				<span className="skill-name">{skill.name}</span>
-			</div>
-		</div>
-	)
-}
 
 function Icon({ name }) {
 	switch ((name || '').toLowerCase()) {
@@ -161,10 +152,23 @@ function Icon({ name }) {
 }
 
 export default function Skills() {
+	const container = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: { staggerChildren: 0.1 }
+		}
+	}
+
+	const itemVariant = {
+		hidden: { opacity: 0, y: 20 },
+		visible: { opacity: 1, y: 0 }
+	}
+
 	return (
-		<section className="skills">
+		<section id="skills" className="skills">
 			<div className="skills-header">
-				<h2>Skills</h2>
+				<ParallaxHeader>Skills</ParallaxHeader>
 			</div>
 
 			<div className="skills-grid">
@@ -174,13 +178,27 @@ export default function Skills() {
 						className="skill-group"
 					>
 						<h3>{group.category}</h3>
-						<div className="skill-list">
+						<motion.div
+							className="skill-list"
+							variants={container}
+							initial="hidden"
+							whileInView="visible"
+							viewport={{ once: true, margin: "-50px" }}
+						>
 							{group.items.map((s) => (
-								<div key={s.name}>
-									<SkillRow skill={s} />
-								</div>
+								<motion.div
+									key={s.name}
+									className="skill-row"
+									variants={itemVariant}
+									whileHover={{ scale: 1.05, x: 5 }}
+								>
+									<div className="skill-meta">
+										<span className="skill-icon"><Icon name={s.icon} /></span>
+										<span className="skill-name">{s.name}</span>
+									</div>
+								</motion.div>
 							))}
-						</div>
+						</motion.div>
 					</div>
 				))}
 			</div>

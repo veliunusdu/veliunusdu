@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import ParallaxHeader from './ParallaxHeader'
 
 export default function AboutMe() {
     return (
@@ -11,7 +12,7 @@ export default function AboutMe() {
                 transition={{ duration: 0.6 }}
                 className="about-card"
             >
-                <h2>About Me</h2>
+                <ParallaxHeader>About Me</ParallaxHeader>
                 <div className="about-text">
                     <p>
                         Hello! I'm Veli, a passionate developer who loves building things for the web.
