@@ -1295,6 +1295,7 @@ body.power-switch-demo {
   position: relative;
   z-index: 1;
 }
+
 /* Snake Game Retro Styles */
 .snake-overlay {
   position: fixed;
@@ -1307,16 +1308,16 @@ body.power-switch-demo {
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(5px);
+  /* backdrop-filter removed for mobile performance */
 }
 
 .nokia-phone {
   background: #333;
   padding: 40px 20px;
   border-radius: 30px;
-  box-shadow: 
-    inset 0 0 20px rgba(0,0,0,0.5),
-    0 20px 50px rgba(0,0,0,0.5);
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.5),
+    0 20px 50px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1326,11 +1327,12 @@ body.power-switch-demo {
 }
 
 .screen-container {
-  background: #9ea792; /* Nokia screen green */
+  background: #9ea792;
+  /* Nokia screen green */
   padding: 15px;
   border-radius: 10px;
   border: 2px solid #7c8574;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .screen-glass {
@@ -1345,10 +1347,8 @@ body.power-switch-demo {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    rgba(255,255,255,0.1),
-    rgba(255,255,255,0)
-  );
+  background: linear-gradient(rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0));
   pointer-events: none;
 }
 
@@ -1388,12 +1388,21 @@ body.power-switch-demo {
 }
 
 @keyframes pulse {
-  0% { transform: scale(0.8); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(0.8); }
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(0.8);
+  }
 }
 
-.game-over-msg, .start-msg {
+.game-over-msg,
+.start-msg {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1405,7 +1414,8 @@ body.power-switch-demo {
   z-index: 10;
 }
 
-.game-over-msg button, .start-msg button {
+.game-over-msg button,
+.start-msg button {
   background: #1a1a1a;
   color: #9ea792;
   border: none;
@@ -1432,12 +1442,15 @@ body.power-switch-demo {
 
 .d-row {
   display: flex;
-  gap: 35px;
+  gap: 60px;
+  /* Increased spacing */
 }
 
 .d-btn {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  /* Increased size */
+  height: 60px;
+  /* Increased size */
   border-radius: 50%;
   border: none;
   background: #e0e0e0;
@@ -1446,8 +1459,11 @@ body.power-switch-demo {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 12px;
+  font-size: 24px;
+  /* Increased icon size */
   color: #333;
+  touch-action: manipulation;
+  /* Improve touch response */
 }
 
 .d-btn:active {
@@ -1489,4 +1505,3 @@ body.power-switch-demo {
   color: var(--accent);
   transform: translateY(-2px);
 }
-

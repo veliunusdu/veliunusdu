@@ -124,7 +124,8 @@ export default function SnakeGame({ onClose }) {
     }
 
     // Mobile Controls
-    const handleControl = (dir) => {
+    const handleControl = (dir, e) => {
+        if (e) e.preventDefault() // Prevent scrolling/zooming
         const currentDir = lastMoveDirection.current
         if (dir === 'UP' && currentDir.y !== 1) directionRef.current = { x: 0, y: -1 }
         if (dir === 'DOWN' && currentDir.y !== -1) directionRef.current = { x: 0, y: 1 }
@@ -194,12 +195,12 @@ export default function SnakeGame({ onClose }) {
 
                 <div className="controls-area">
                     <div className="d-pad">
-                        <button className="d-btn up" onClick={() => handleControl('UP')}>▲</button>
+                        <button className="d-btn up" onPointerDown={(e) => handleControl('UP', e)}>▲</button>
                         <div className="d-row">
-                            <button className="d-btn left" onClick={() => handleControl('LEFT')}>◀</button>
-                            <button className="d-btn right" onClick={() => handleControl('RIGHT')}>▶</button>
+                            <button className="d-btn left" onPointerDown={(e) => handleControl('LEFT', e)}>◀</button>
+                            <button className="d-btn right" onPointerDown={(e) => handleControl('RIGHT', e)}>▶</button>
                         </div>
-                        <button className="d-btn down" onClick={() => handleControl('DOWN')}>▼</button>
+                        <button className="d-btn down" onPointerDown={(e) => handleControl('DOWN', e)}>▼</button>
                     </div>
                     <div className="action-btns">
                         <button className="close-btn" onClick={onClose}>EXIT</button>
