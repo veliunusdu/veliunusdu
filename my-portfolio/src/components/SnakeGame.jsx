@@ -7,7 +7,7 @@ const BOARD_WIDTH = 15
 const BOARD_HEIGHT = 15
 const INITIAL_SNAKE = [{ x: 7, y: 7 }, { x: 7, y: 8 }, { x: 7, y: 9 }]
 const INITIAL_DIRECTION = { x: 0, y: -1 } // Moving up
-const GAME_SPEED = 250
+const GAME_SPEED = 200
 
 export default function SnakeGame({ onClose }) {
     const [snake, setSnake] = useState(INITIAL_SNAKE)
@@ -19,6 +19,7 @@ export default function SnakeGame({ onClose }) {
     const [highScore, setHighScore] = useState(() => parseInt(localStorage.getItem('snakeHighScore') || '0'))
 
     const directionRef = useRef(INITIAL_DIRECTION)
+    const lastMoveDirection = useRef(INITIAL_DIRECTION)
     const gameLoopRef = useRef(null)
 
     // Generate random food position
@@ -41,7 +42,7 @@ export default function SnakeGame({ onClose }) {
             if (!isPlaying) return
 
             const { key } = e
-            const currentDir = directionRef.current
+            const currentDir = lastMoveDirection.current
 
             if (key === 'ArrowUp' && currentDir.y !== 1) {
                 directionRef.current = { x: 0, y: -1 }
@@ -61,6 +62,9 @@ export default function SnakeGame({ onClose }) {
     // Game Loop
     const moveSnake = useCallback(() => {
         if (gameOver) return
+
+        // Update last move direction to the one we are about to execute
+        lastMoveDirection.current = directionRef.current
 
         setSnake(prevSnake => {
             const newHead = {
@@ -112,6 +116,7 @@ export default function SnakeGame({ onClose }) {
         setSnake(INITIAL_SNAKE)
         setDirection(INITIAL_DIRECTION)
         directionRef.current = INITIAL_DIRECTION
+        lastMoveDirection.current = INITIAL_DIRECTION
         setScore(0)
         setGameOver(false)
         setIsPlaying(true)
@@ -120,7 +125,7 @@ export default function SnakeGame({ onClose }) {
 
     // Mobile Controls
     const handleControl = (dir) => {
-        const currentDir = directionRef.current
+        const currentDir = lastMoveDirection.current
         if (dir === 'UP' && currentDir.y !== 1) directionRef.current = { x: 0, y: -1 }
         if (dir === 'DOWN' && currentDir.y !== -1) directionRef.current = { x: 0, y: 1 }
         if (dir === 'LEFT' && currentDir.x !== 1) directionRef.current = { x: -1, y: 0 }
