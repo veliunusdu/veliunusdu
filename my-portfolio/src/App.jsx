@@ -19,7 +19,7 @@ export default function App() {
 
   // On mount, simulate a cursor moving across the name (head -> tail).
   useEffect(() => {
-    const startDelay = 500; // shorter initial delay for snappier feel
+    const startDelay = 1200; // increased delay so the blurry name animation starts later
     const maxSpread = 5; // neighbors to affect
     const stepDelay = 80; // time between each char activation (ms)
     const hold = 140; // how long each activation persists (ms)
