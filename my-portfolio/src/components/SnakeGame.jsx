@@ -7,7 +7,7 @@ const BOARD_WIDTH = 15
 const BOARD_HEIGHT = 15
 const INITIAL_SNAKE = [{ x: 7, y: 7 }, { x: 7, y: 8 }, { x: 7, y: 9 }]
 const INITIAL_DIRECTION = { x: 0, y: -1 } // Moving up
-const GAME_SPEED = 150
+const GAME_SPEED = 250
 
 export default function SnakeGame({ onClose }) {
     const [snake, setSnake] = useState(INITIAL_SNAKE)
