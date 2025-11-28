@@ -7,6 +7,7 @@ import site from './data/siteConfig'
 import SocialLinks from './components/SocialLinks'
 import Skills from './components/Skills'
 import Education from './components/Education'
+import AboutMe from './components/AboutMe'
 import { motion } from 'framer-motion'
 
 export default function App() {
@@ -89,6 +90,14 @@ export default function App() {
         </div>
       </motion.header>
 
+      <nav className="site-nav" style={{ display: 'flex', justifyContent: 'center', padding: '20px 0' }}>
+        <ul style={{ display: 'flex', gap: '30px', listStyle: 'none', padding: 0, margin: 0 }}>
+          <li><a href="#about" style={{ textDecoration: 'none', color: 'var(--fg)', fontWeight: 500, fontSize: '1.1rem' }}>Me</a></li>
+          <li><a href="#projects" style={{ textDecoration: 'none', color: 'var(--fg)', fontWeight: 500, fontSize: '1.1rem' }}>Projects</a></li>
+          <li><a href="#contact" style={{ textDecoration: 'none', color: 'var(--fg)', fontWeight: 500, fontSize: '1.1rem' }}>Contact</a></li>
+        </ul>
+      </nav>
+
       <main>
         <motion.section
           className="hero"
@@ -101,14 +110,7 @@ export default function App() {
           <p>Welcome to my portfolio — I build things and learn every day.</p>
         </motion.section>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={fadeInUp}
-        >
-          <Skills />
-        </motion.div>
+        <AboutMe />
 
         <motion.div
           initial="hidden"
@@ -119,7 +121,17 @@ export default function App() {
           <Education />
         </motion.div>
 
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+        >
+          <Skills />
+        </motion.div>
+
         <motion.section
+          id="projects"
           className="projects"
           initial="hidden"
           whileInView="visible"
@@ -135,6 +147,7 @@ export default function App() {
         </motion.section>
 
         <motion.section
+          id="contact"
           className="contact"
           initial="hidden"
           whileInView="visible"
